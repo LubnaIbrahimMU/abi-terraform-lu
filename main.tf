@@ -14,25 +14,7 @@ module "vpc" {
 }
 
 
-# output "public_subnet_ids" {
-#   value = module.vpc.public_subnet_ids
-# }
 
-# output "vpc_id" {
-#   value = module.vpc.vpc_id
-# }
-
-# output "private_subnet_id" {
-#   value = module.vpc.private_subnet_id
-# }
-
-# output "wordpress_sg_id" {
-#   value = module.vpc.wordpress_sg_id
-# }
-
-# output "lb_security_group_id" {
-#   value = module.vpc.lb_sg_id
-# }
 
 
 
@@ -50,4 +32,13 @@ module "asg" {
 
  }
 
+module "ec2" {
+    source = "./modules/ec2"
+    image_id2 = var.image_id2
+    private_subnet_id = module.vpc.private_subnet_id
+    vpc_id = module.vpc.vpc_id
+    private_ip = module.ec2.private_ip
+
+  
+}
 

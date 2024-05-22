@@ -28,3 +28,9 @@ output "asg_name" {
 output "load_balancer_dns_name" {
   value = module.asg.load_balancer_dns_name
 }
+
+
+# Output the private IP address to be used elsewhere
+output "private_ip" {
+  value = module.ec2.private_ip
+}

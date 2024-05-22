@@ -8,4 +8,4 @@ availability_zone2   = "us-east-1b"
 image_id            = "ami-0e98d02ab4e44ca66" 
 template_name = "wordpress-lu"
 instance_type = "t3.small"
-
+image_id2 = "ami-0981959be8f88daab"

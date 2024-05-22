@@ -48,6 +48,10 @@ variable "instance_type" {
 }
 
 
+variable "image_id2" {
+  type        = string
+}
+
 
 
 # variable "wordpress_sg_id" {
