@@ -13,14 +13,14 @@ variable "vpc_id" {
 
 
 variable "image_id2" {
-  type        = string
+  type = string
 }
 
 
 variable "private_ip" {
-  
+
 }
 
 variable "key" {
-  
+
 }

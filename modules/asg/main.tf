@@ -1,6 +1,6 @@
 data "aws_ami" "ubuntu" {
   most_recent = true
-  owners      = ["099720109477"]  # Canonical
+  owners      = ["099720109477"] # Canonical
   filter {
     name   = "name"
     values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
@@ -44,16 +44,16 @@ resource "aws_launch_template" "wordpress_lu" {
 
 
 resource "aws_autoscaling_group" "lu" {
-  
-    name = "lu"
+
+  name = "lu"
   launch_template {
-    id = aws_launch_template.wordpress_lu.id
+    id      = aws_launch_template.wordpress_lu.id
     version = "$Latest"
   }
 
-    
-    
-  
+
+
+
   vpc_zone_identifier = var.public_subnet_ids
   desired_capacity    = 2
   max_size            = 4
@@ -66,29 +66,29 @@ resource "aws_autoscaling_group" "lu" {
     propagate_at_launch = true
   }
 
-  
 
 
 
-  
+
+
 }
 
 
 resource "aws_autoscaling_policy" "scale_up" {
-  name                   = "scale_up"
-  scaling_adjustment     = 1
-  adjustment_type        = "ChangeInCapacity"
-  cooldown               = 300
-  autoscaling_group_name = aws_autoscaling_group.lu.name
+  name                    = "scale_up"
+  scaling_adjustment      = 1
+  adjustment_type         = "ChangeInCapacity"
+  cooldown                = 300
+  autoscaling_group_name  = aws_autoscaling_group.lu.name
   metric_aggregation_type = "Average"
 }
 
 resource "aws_autoscaling_policy" "scale_down" {
-  name                   = "scale_down"
-  scaling_adjustment     = -1
-  adjustment_type        = "ChangeInCapacity"
-  cooldown               = 300
-  autoscaling_group_name = aws_autoscaling_group.lu.name
+  name                    = "scale_down"
+  scaling_adjustment      = -1
+  adjustment_type         = "ChangeInCapacity"
+  cooldown                = 300
+  autoscaling_group_name  = aws_autoscaling_group.lu.name
   metric_aggregation_type = "Average"
 }
 
@@ -120,21 +120,14 @@ resource "aws_lb_target_group" "TG_lu" {
   vpc_id   = var.vpc_id
   health_check {
     path                = "/"
-    protocol            = "HTTP" 
+    protocol            = "HTTP"
     matcher             = "200"
     interval            = 10
     timeout             = 5
     healthy_threshold   = 2
     unhealthy_threshold = 2
   }
-  # health_check {
-  #   healthy_threshold   = 2
-  #   unhealthy_threshold = 2
-  #   timeout             = 5
-  #   interval            = 30
-  #   path                = "/"
-  #   matcher             = "200"
-  # }
+
 }
 
 resource "aws_lb_listener" "listener" {

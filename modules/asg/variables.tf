@@ -1,12 +1,12 @@
 variable "image_id" {
-  type        = string
+  type = string
 }
 variable "template_name" {
-  type        = string
+  type = string
 }
 
 variable "instance_type" {
-  type        = string
+  type = string
 }
 
 
@@ -49,7 +49,7 @@ variable "subnets" {
 
 
 variable "key_name" {
-  
+
 }
 
 variable "private_key_pem" {

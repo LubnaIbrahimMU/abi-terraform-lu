@@ -1,6 +1,6 @@
 variable "vpc_cidr" {
-  type        = string
-  default     = "10.0.0.0/16"
+  type    = string
+  default = "10.0.0.0/16"
 }
 
 variable "public_subnet_cidr_a" {
@@ -37,55 +37,19 @@ variable "availability_zone2" {
 
 
 variable "image_id" {
-  type        = string
+  type = string
 }
 variable "template_name" {
-  type        = string
+  type = string
 }
 
 variable "instance_type" {
-  type        = string
+  type = string
 }
 
 
 variable "image_id2" {
-  type        = string
+  type = string
 }
 
 
-# variable "wordpress_sg_id" {
-#   description = "ID of the security group for WordPress instances"
-#   type        = string
-# }
-
-
-# variable "lb_security_group_id" {
-#   description = "Security group ID for the Load Balancer"
-#   type        = string
-# }
-
-
-# variable "subnet_id" {
-#   type        = string
-# }
-
-# variable "public_subnet_ids" {
-#   description = "The IDs of the public subnets"
-#   type        = list(string)
-# }
-
-
-# variable "subnets" {
-#   description = "The IDs of the public subnets"
-#   type        = list(string)
-# }
-
-# variable "subnet_ids" {
-#   description = "List of subnet IDs"
-#   type        = list(string)
-# }
-
-# variable "subnets" {
-#   description = "The subnets for the load balancer"
-#   type        = list(string)
-# }
