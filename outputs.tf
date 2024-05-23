@@ -34,3 +34,12 @@ output "load_balancer_dns_name" {
 output "private_ip" {
   value = module.ec2.private_ip
 }
+
+# output "public_ip" {
+#   value = module.asg.public_ip
+
+# }
+
+output "instance_public_ips" {
+  value = module.asg.instance_public_ips
+}

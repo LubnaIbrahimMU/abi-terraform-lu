@@ -20,3 +20,7 @@ variable "image_id2" {
 variable "private_ip" {
   
 }
+
+variable "key" {
+  
+}

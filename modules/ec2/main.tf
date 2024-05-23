@@ -4,7 +4,7 @@ resource "aws_instance" "lu_db_t" {
   ami                         = var.image_id2
   instance_type               = "t2.micro"
   subnet_id                   = var.private_subnet_id
-  key_name                    = "lu-tf"
+  key_name                    = var.key.key_name
   vpc_security_group_ids      = ["${aws_security_group.mysql_sg.id}"]
   
 

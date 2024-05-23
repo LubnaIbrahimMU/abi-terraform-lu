@@ -53,7 +53,6 @@ variable "image_id2" {
 }
 
 
-
 # variable "wordpress_sg_id" {
 #   description = "ID of the security group for WordPress instances"
 #   type        = string

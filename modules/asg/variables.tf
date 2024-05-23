@@ -48,3 +48,12 @@ variable "subnets" {
 }
 
 
+variable "key_name" {
+  
+}
+
+variable "private_key_pem" {
+  description = "The private key PEM"
+  type        = string
+  sensitive   = true
+}

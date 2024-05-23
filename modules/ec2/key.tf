@@ -9,10 +9,26 @@ resource "aws_key_pair" "key" {
 
 #   provisioner "local-exec" 
 
-  provisioner "local-exec" {
-    command = "echo '${tls_private_key.pk.private_key_pem}' > ./lu-tf.pem"
-  }
+  # provisioner "local-exec" {
+  #   command = "echo '${tls_private_key.pk.private_key_pem}' > ./lu-tf.pem"
+  # }
 
+
+#   provisioner "local-exec" {
+#   command = <<EOT
+#     rm -f ./lu-tf.pem
+#     echo '${tls_private_key.pk.private_key_pem}' > ./lu-tf.pem
+#   EOT
+# }
+
+
+provisioner "local-exec" {
+  command = <<EOT
+    rm -f ./lu-tf.pem
+    echo '${tls_private_key.pk.private_key_pem}' > ./lu-tf.pem
+    chmod 400 ./lu-tf.pem
+  EOT
+}
 
 
 

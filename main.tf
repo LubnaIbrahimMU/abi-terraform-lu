@@ -29,6 +29,8 @@ module "asg" {
   wordpress_sg_id     = module.vpc.wordpress_sg_id
   lb_security_group_id = module.vpc.lb_sg_id
   subnets     = module.vpc.public_subnet_ids
+  key_name = module.ec2.key
+  private_key_pem = module.ec2.private_key_pem
 
  }
 
@@ -38,6 +40,7 @@ module "ec2" {
     private_subnet_id = module.vpc.private_subnet_id
     vpc_id = module.vpc.vpc_id
     private_ip = module.ec2.private_ip
+    key = module.ec2.key
 
   
 }
