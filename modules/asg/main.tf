@@ -13,13 +13,14 @@ resource "aws_launch_template" "wordpress_lu" {
   image_id      = var.image_id
   instance_type = var.instance_type
   key_name      = var.key_name.key_name
-  user_data = base64encode(<<-EOF
-    #!/bin/bash
-    echo '${var.private_key_pem}' > /home/ubuntu/lu-tf.pem
-    chown ubuntu:ubuntu /home/ubuntu/lu-tf.pem
-    chmod 400 /home/ubuntu/lu-tf.pem
-  EOF
-  )
+  user_data     = var.user_data
+  # user_data = base64encode(<<-EOF
+  #   #!/bin/bash
+  #   echo '${var.private_key_pem}' > /home/ubuntu/lu-tf.pem
+  #   chown ubuntu:ubuntu /home/ubuntu/lu-tf.pem
+  #   chmod 400 /home/ubuntu/lu-tf.pem
+  # EOF
+  # )
 
   lifecycle {
     create_before_destroy = true

@@ -57,3 +57,7 @@ variable "private_key_pem" {
   type        = string
   sensitive   = true
 }
+
+variable "user_data" {
+  
+}

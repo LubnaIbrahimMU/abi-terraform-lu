@@ -31,6 +31,9 @@ module "asg" {
   subnets              = module.vpc.public_subnet_ids
   key_name             = module.ec2.key
   private_key_pem      = module.ec2.private_key_pem
+  user_data            = base64encode(file("./install.sh"))
+  depends_on           = [module.ec2]
+  # depends_on                = [null_resource.update_docker_compose]
 
 }
 
@@ -45,3 +48,16 @@ module "ec2" {
 
 }
 
+resource "null_resource" "update_docker_compose" {
+  provisioner "local-exec" {
+    command = "bash ./update_docker_compose.sh"
+  }
+
+  # Trigger the execution whenever there's a change in the frontend EC2 instance
+  triggers = {
+    when_frontend_ec2_private_ip_changed = module.ec2.instance_id
+  }
+
+  # Ensure the execution order is respected
+  depends_on = [module.ec2]
+}
